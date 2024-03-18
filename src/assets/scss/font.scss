@@ -1,0 +1,18 @@
+@use "sass:meta";
+
+@mixin fontRegister($font, $args...) {
+  @each $name, $weight in meta.keywords($args) {
+    @font-face {
+      font-family: $font + #{$name};
+      src: url("../font/" + $font + #{$name} + ".ttf") format("truetype");
+      font-weight: $weight;
+    }
+  }
+}
+
+
+@include fontRegister("helvetica-",
+    $light: 300,
+    $regular: 400,
+    $bold: 700
+)
