@@ -14,7 +14,7 @@ const Api = (apiSearch?: string) =>
           const apiMethod = camelToCase(method_name);
           const httpMethod = apiMethod.split("_")[0].toUpperCase();
           const isGetMethod = httpMethod === "GET";
-          const url = new URL(`${API_URL}/${apiSearch ? apiMethod : "query?"}`);
+          const url = new URL(`${API_URL}/${apiSearch ? apiSearch : "query?"}`);
 
           const options = {
             method: httpMethod,
