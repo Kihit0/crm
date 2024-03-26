@@ -1,9 +1,12 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
-  App
+  <div class="crm-app p-16">
+    App
+  </div>
+
 </template>
 
 <style scoped>
