@@ -1,5 +1,5 @@
-import Api from "./core/api";
-import { intervalMinutes, functionParams } from "./params/general.params";
+import Api from "../core/api";
+import { intervalMinutes, functionParams } from "../params/general.params";
 
 const api = Api()
 

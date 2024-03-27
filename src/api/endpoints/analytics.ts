@@ -1,5 +1,5 @@
-import Api from "./core/api";
-import { calculationsAnalyticsParams, intervalAnalyticsParams, ohlcAnalyticsParams, rangeAnalyticsParams } from "./params/analytics.params";
+import Api from "../core/api";
+import { calculationsAnalyticsParams, intervalAnalyticsParams, ohlcAnalyticsParams, rangeAnalyticsParams } from "../params/analytics.params";
 
 
 const ANALYTICS_URL = "timeseries/analytics?"

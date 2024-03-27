@@ -1,6 +1,6 @@
-import Api from "./core/api";
-import { functionParams } from "./params/general.params";
-import { sortNews, topicsNews } from "./params/news.params";
+import Api from "../core/api";
+import { functionParams } from "../params/general.params";
+import { sortNews, topicsNews } from "../params/news.params";
 
 const api = Api();
 

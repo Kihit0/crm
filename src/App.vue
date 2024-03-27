@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="crm-app p-16">
+  <div class="w-screen h-screen p-4 bg-main text-text-color-main">
     App
   </div>
 
