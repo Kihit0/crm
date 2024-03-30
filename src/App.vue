@@ -1,14 +1,27 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <div class="w-screen h-screen p-4 bg-main text-text-color-main">
-    App
+  <div class="w-screen h-screen bg-main text-text-color-main overflow-hidden">
+    <RouterView />
   </div>
-
 </template>
 
-<style scoped>
+<script lang="ts">
+import { defineComponent } from 'vue'
 
+export default defineComponent({
+  name: "App",
+  created() {
+    const isToken = localStorage.getItem("u_token");
+    if (isToken) {
+      this.$router.push("/login");
+    }
+  },
+  setup() {
+
+
+    return {}
+  }
+})
+</script>
+
+<style scoped>
 </style>
