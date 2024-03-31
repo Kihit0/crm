@@ -1,14 +1,22 @@
 <template>
-  <div class="w-screen h-screen bg-main text-text-color-main overflow-hidden">
-    <RouterView />
+  <div>
+    <Svg></Svg>
+    <div class="w-screen h-screen bg-main text-text-color-main overflow-hidden">
+      <RouterView />
+    </div>
   </div>
+
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import Svg from "@components/ux/icons/index.vue";
 
 export default defineComponent({
   name: "App",
+  components: {
+    Svg
+  },
   created() {
     const isToken = localStorage.getItem("u_token");
     if (isToken) {
@@ -23,5 +31,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

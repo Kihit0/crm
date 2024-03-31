@@ -8,11 +8,14 @@
       <div class="navigation__menu-items h-full mt-32">
         <div class="navigation__menu-item my-8 " v-for="item in getNavigateItems()">
           <div :class="{ 'active-link': item.path === getActivePath() }">
-            <RouterLink class="flex content-center" :to="{ path: item.path }">
-              <img :src="`${item.icon}`" :alt="`${String(item.name)}`">
-              <p class="ml-4">
+            <RouterLink class="flex content-center " :to="{ path: item.path }">
+              <svg class="w-4 h-4 mt-1 transition-all"
+                :class="[item.path === getActivePath() ? 'fill-text-color-link' : 'fill-text-color-main']">
+                <use :xlink:href="`#${String(item.name)}`" />
+              </svg>
+              <div class="ml-4">
                 {{ item.name }}
-              </p>
+              </div>
             </RouterLink>
           </div>
         </div>
@@ -24,8 +27,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { RouteRecordRaw, RouterLink } from 'vue-router';
-import News from "@assets/image/icon/news.svg";
-import Dashboard from "@assets/image/icon/dashboard.svg";
 
 export default defineComponent({
   name: "Navigation",
@@ -34,14 +35,9 @@ export default defineComponent({
       return this.$route.path
     },
     getNavigateItems() {
-      const navigateIcons = {
-        Dashboard,
-        News
-      };
       const mainPath = this.$router.options.routes.filter((el: RouteRecordRaw) => el.name === "Main")[0];
-      const navigateItems = mainPath.children?.map(item => Object.assign(item, { icon: navigateIcons[item.name] }));
 
-      return navigateItems;
+      return mainPath.children;
     }
   }
 })
@@ -52,6 +48,7 @@ export default defineComponent({
   width: 100%;
   min-width: 250px;
 }
+
 
 .active-link {
   @apply text-text-color-link relative;

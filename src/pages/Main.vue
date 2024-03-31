@@ -1,9 +1,14 @@
 <template>
-	<div class="main-content flex">
-		<div class="main-content__navigation">
+	<div class="main flex">
+		<div class="main__navigation">
 			<Navigation />
 		</div>
-		<RouterView />
+		<div class="main__content h-full w-full pl-8">
+			<div class="main__content-top__bar py-4 w-full">
+				Bar
+			</div>
+			<RouterView />
+		</div>
 	</div>
 </template>
 
