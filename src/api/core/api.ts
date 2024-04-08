@@ -1,6 +1,7 @@
-import type { API } from "./api.interface";
+import type { API } from "./interfaces/api.interface";
 
-const API_URL = "https://www.alphavantage.co";
+const API_URL = "https://finnhub.io/api/";
+const API_VERSION = "v1";
 
 const camelToCase = (str: string) =>
   str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
@@ -14,7 +15,7 @@ const Api = (apiSearch?: string) =>
           const apiMethod = camelToCase(method_name);
           const httpMethod = apiMethod.split("_")[0].toUpperCase();
           const isGetMethod = httpMethod === "GET";
-          const url = new URL(`${API_URL}/${apiSearch ? apiSearch : "query?"}`);
+          const url = new URL(`${API_URL + API_VERSION}/${apiSearch ? apiSearch : "search?"}`);
 
           const options = {
             method: httpMethod,
@@ -25,13 +26,9 @@ const Api = (apiSearch?: string) =>
 
           if (isGetMethod) {
             url.search = new URLSearchParams(
-              Object.assign(
-                {
-                  apikey: import.meta.env.VITE_API_KEY || "demo",
-                },
-                props
-              )
-            ).toString();
+              Object.assign({
+                token: import.meta.env.VITE_API_KEY || ""
+              }, props)).toString();
           } else {
             return null;
           }

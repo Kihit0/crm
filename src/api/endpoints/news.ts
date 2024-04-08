@@ -1,18 +1,9 @@
 import Api from "../core/api";
-import { functionParams } from "../params/general.params";
-import { sortNews, topicsNews } from "../params/news.params";
+import type { typeApiNews } from "../params/news.params";
 
-const api = Api();
+const QUERY_URL = "news?"
+const api = Api(QUERY_URL);
 
-interface IPayloadNews{
-    tickers: string;
-    topics: topicsNews,
-    sort: sortNews,
-    limit: number
-}
+const getNews = (payload: typeApiNews) => api.getNews(payload);
 
-const getNews = (payload: IPayloadNews) => api.getNews(Object.assign({function: functionParams.NEWS_SENTIMENT}, payload));
-
-export default {
-    getNews
-}
+export default getNews;

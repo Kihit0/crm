@@ -5,7 +5,7 @@
 		</div>
 		<div class="main__content h-full w-full pl-8">
 			<div class="main__content-top__bar py-4 w-full">
-				Bar
+				<Topbar />
 			</div>
 			<RouterView />
 		</div>
@@ -15,11 +15,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Navigation from "@components/ux/Navigation/index.vue";
+import Topbar from "@components/ux/Topbar/index.vue";
+
 
 export default defineComponent({
 	name: "Main",
 	components: {
-		Navigation
+		Navigation,
+		Topbar
 	},
 	created() {
 		

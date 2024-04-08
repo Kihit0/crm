@@ -9,11 +9,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: "News",
-    setup() {
-
-
-        return {}
-    }
 })
 </script>
 
