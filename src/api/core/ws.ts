@@ -38,10 +38,11 @@ socket.addEventListener("message", (event: MessageEvent) => {
     };
   });
 
-  functionTickerHandler.forEach(
-    (item) => item.fn !== undefined && item.fn.forEach(cb => cb(item.price))
-  );
+  functionTickerHandler.forEach((item) => {
+    item.fn?.forEach((cb) => {
+      cb(item.price)
+    });
+  });
 });
-
 
 export default sendToWebSocket;
