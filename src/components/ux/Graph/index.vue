@@ -12,6 +12,7 @@ import { defineComponent } from 'vue'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale)
+ChartJS.defaults.color = "#6F6C99";
 
 export default defineComponent({
   name: "Graph",
@@ -27,6 +28,7 @@ export default defineComponent({
         maintainAspectRatio: false,
         cubicInterpolationMode: 'monotone',
         tensions: 10,
+        display: false
       }
     }
   },
@@ -44,15 +46,11 @@ export default defineComponent({
       ]
     } as never)
   },
-  computed: {
-  },
   methods: {
     updateTicker(tickers: number[]) {
-      const normalizePrice: number = this.formatPrice(tickers);
+      const normalizePrice: number = this.formatPrice(this.getAveragePrice(tickers));
       const normalizeDate: string = this.getNormalizeDate();
       const isTimeInLabels = this.labels.filter(f => f === normalizeDate).length === 0;
-
-      //console.log(this.tickers)
 
       this.tickers.forEach((ticker: {
         name: string,
@@ -82,9 +80,11 @@ export default defineComponent({
 
       return labelsDate;
     },
-    formatPrice(price: number[]) {
-      const average = (price.reduce((a, b) => a + b, 0) / price.length)
-      const normalize = Number(average > 0 ? average.toFixed(2) : average.toPrecision(2));
+    getAveragePrice(price: number[]) {
+      return (price.reduce((a, b) => a + b, 0) / price.length);
+    },
+    formatPrice(averagePrice: number) {
+      const normalize = Number(averagePrice > 0 ? averagePrice.toFixed(2) : averagePrice.toPrecision(2));
       return normalize;
     },
     getChartData() {
@@ -94,6 +94,7 @@ export default defineComponent({
           name: string,
           priceOnTime: { time: string, price: number[] }[]
         }) => {
+          ticker.priceOnTime.length > 30 && ticker.priceOnTime.shift()
           return {
             label: ticker.name,
             backgroundColor: '#f87979',
@@ -104,10 +105,5 @@ export default defineComponent({
       }
     }
   },
-  watch: {
-
-  }
 })
 </script>
-
-<style scoped></style>
