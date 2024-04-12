@@ -1,5 +1,5 @@
 import { IDataEvent } from "./interfaces/ws.interface";
-import ticketHandler from "./observer";
+import ticketHandler from "../observer/observer.ws";
 
 const API_KEY = import.meta.env.VITE_API_KEY || "";
 const API_URL = "wss://ws.finnhub.io";
@@ -28,7 +28,7 @@ socket.addEventListener("message", (event: MessageEvent) => {
     JSON.parse(event.data);
 
   if (typeof type !== "string" || type === "ping" || !data) return;
-  const uniqueSymbol = [...new Set(data.map((ticker) => ticker.s))];
+  const uniqueSymbol = Array.from(new Set(data.map((ticker) => ticker.s)));
 
   const functionTickerHandler = uniqueSymbol.map((ticker) => {
     return {

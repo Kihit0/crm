@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Line } from "vue-chartjs";
-import { subscribeToTicker } from '@api/core/observer';
+import { subscribeToTicker } from '@/api/observer/observer.ws';
 import { defineComponent } from 'vue'
 
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js'
@@ -88,6 +88,7 @@ export default defineComponent({
       return normalize;
     },
     getChartData() {
+      this.labels.length > 30 && this.labels.shift();
       return {
         labels: this.labels,
         datasets: this.tickers.map((ticker: {
