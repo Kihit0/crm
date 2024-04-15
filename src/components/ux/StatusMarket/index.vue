@@ -5,7 +5,7 @@
         'text-text-color-red': !item.isOpen,
         'text-text-color-green': item.isOpen
       }">
-        {{ item.isOpen ? "Open" : "Close" }}
+        {{ item.isOpen ? "Yes" : "No" }}
       </span>
     </div>
     <div class="py-px">
