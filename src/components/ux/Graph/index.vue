@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { Line } from "vue-chartjs";
+import { formatDate } from "@/helpers/formatDate";
 import { subscribeToTicker } from '@/api/observer/observer.ws';
 import { defineComponent } from 'vue'
 
@@ -34,7 +35,7 @@ export default defineComponent({
   },
   created() {
     subscribeToTicker("BINANCE:BTCUSDT", (tickers: number[]) => this.updateTicker(tickers));
-    const normalizeDate: string = this.getNormalizeDate();
+    const normalizeDate: string = formatDate(new Date());
     this.labels.push(normalizeDate as never);
     this.tickers.push({
       name: "BINANCE:BTCUSDT",
@@ -49,7 +50,7 @@ export default defineComponent({
   methods: {
     updateTicker(tickers: number[]) {
       const normalizePrice: number = this.formatPrice(this.getAveragePrice(tickers));
-      const normalizeDate: string = this.getNormalizeDate();
+      const normalizeDate: string = formatDate(new Date());
       const isTimeInLabels = this.labels.filter(f => f === normalizeDate).length === 0;
 
       this.tickers.forEach((ticker: {
@@ -71,14 +72,6 @@ export default defineComponent({
       })
 
       isTimeInLabels && this.labels.push(normalizeDate as never)
-    },
-    getNormalizeDate() {
-      const date = new Date();
-      const hour = date.getHours();
-      const minutes = date.getMinutes();
-      const labelsDate = `${hour}:${minutes < 10 ? `0${minutes}` : minutes}`
-
-      return labelsDate;
     },
     getAveragePrice(price: number[]) {
       return (price.reduce((a, b) => a + b, 0) / price.length);

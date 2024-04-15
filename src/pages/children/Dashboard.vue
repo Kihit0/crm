@@ -2,11 +2,18 @@
   <div class="dashboard pt-4">
     <div class="flex">
       <div class="dashboard-graph w-3/4">
-        <Graph />
+        <div class="mb-8">
+          <Graph />
+        </div>
+        <div>
+          info
+        </div>
       </div>
-      <div class="status w-1/4 px-4">
+      <div class="dashboard-status w-1/4 px-4">
+        <h4 class="uppercase ">
+          Status Market
+        </h4>
         <StatusMarket />
-        Status market
       </div>
     </div>
   </div>
@@ -23,11 +30,6 @@ export default defineComponent({
     Graph,
     StatusMarket
   },
-  setup() {
-
-
-    return {}
-  }
 })
 </script>
 
