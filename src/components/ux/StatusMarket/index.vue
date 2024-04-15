@@ -48,6 +48,7 @@ export default defineComponent({
   data() {
     return {
       statusMarket: [] as IStatusMarket[],
+      date: new Date(),
       statusMarketHoliday: null
     }
   },
@@ -73,6 +74,7 @@ export default defineComponent({
       timezone: string
     }) {
       const isElementInArray: boolean = Boolean(this.statusMarket.filter(el => el.timezone === item.timezone).length);
+      this.date = new Date();
 
       if (isElementInArray) {
         this.statusMarket.forEach(el => el.timezone === item.timezone && Object.assign(el, item));
@@ -87,9 +89,8 @@ export default defineComponent({
       this.statusMarket.push(item);
     },
     getTimeInCountry() {
-      const date = new Date();
-      const dateFormate = formatDate(date);
-      const timezone = (-date.getTimezoneOffset()) / 60
+      const dateFormate = formatDate(this.date);
+      const timezone = (-this.date.getTimezoneOffset()) / 60
 
       return `${dateFormate} ${timezone > 0 ? `+${timezone}` : timezone} GMT`
     }
