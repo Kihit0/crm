@@ -10,7 +10,7 @@
           <div :class="{ 'active-link': item.path === getActivePath() }">
             <RouterLink class="flex content-center " :to="{ path: item.path }">
               <svg class="w-4 h-4 mt-1 transition-all"
-                :class="[item.path === getActivePath() ? 'fill-text-color-link' : 'fill-text-color-main']">
+                :class="[item.path === getActivePath() ? 'fill-lightblue' : 'fill-light-purple-main']">
                 <use :xlink:href="`#${String(item.name)}`" />
               </svg>
               <div class="ml-4">
@@ -51,7 +51,7 @@ export default defineComponent({
 
 
 .active-link {
-  @apply text-text-color-link relative;
+  @apply text-lightblue relative;
   transition: all .2s ease-in-out;
 }
 
@@ -66,7 +66,7 @@ export default defineComponent({
 
   border-radius: 50%;
 
-  @apply bg-text-color-link;
+  @apply bg-lightblue;
 }
 
 .active-link::before {
@@ -80,7 +80,7 @@ export default defineComponent({
   border-radius: 50%;
   filter: blur(2px);
 
-  @apply bg-text-color-link;
+  @apply bg-lightblue;
   opacity: .3;
   animation: animation 2s infinite;
 }

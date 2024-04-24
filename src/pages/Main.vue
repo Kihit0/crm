@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Navigation from "@components/ux/Navigation/index.vue";
-import Topbar from "@components/ux/Topbar/index.vue";
+import Navigation from "@components/ux/Navigation.vue";
+import Topbar from "@components/ux/Topbar.vue";
 
 
 export default defineComponent({

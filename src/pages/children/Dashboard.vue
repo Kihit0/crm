@@ -21,8 +21,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Graph from "@components/ux/Graph/index.vue";
-import StatusMarket from "@components/ux/StatusMarket/index.vue";
+import Graph from "@components/ux/Graph.vue";
+import StatusMarket from "@components/ux/StatusMarket.vue";
 
 export default defineComponent({
   name: "Dashboard",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Svg></Svg>
-    <div class="w-screen h-screen bg-main text-text-color-main overflow-hidden">
+    <div class="w-screen h-screen bg-main text-light-purple-main overflow-hidden">
       <RouterView />
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Svg from "@components/ux/icons/index.vue";
+import Svg from "@components/ux/icons/Icons.vue";
 
 export default defineComponent({
   name: "App",

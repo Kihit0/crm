@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-secondary shadow rounded-lg p-4 text-text-color-secondary mt-2 " v-for="item in statusMarket">
+  <div class="bg-secondary shadow rounded-lg p-4 text-light-purple-secondary mt-2 " v-for="item in statusMarket">
     <div class="py-px">
       Open: <span class="pl-px" :class="{
-        'text-text-color-red': !item.isOpen,
-        'text-text-color-green': item.isOpen
+        'text-red': !item.isOpen,
+        'text-green': item.isOpen
       }">
         {{ item.isOpen ? "Yes" : "No" }}
       </span>
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { subscribe } from '@/api/observer/observer';
+import { subscribe } from '@api/observer/observer';
 import { formatDate } from '@/helpers/formatDate';
 import { getMarketStatus } from "@api/endpoints/marketStatus"
 import { defineComponent } from 'vue';
@@ -65,14 +65,7 @@ export default defineComponent({
 
   },
   methods: {
-    updateToStatus(item: {
-      exchange: string,
-      holiday: null,
-      isOpen: boolean,
-      session: string,
-      t: number,
-      timezone: string
-    }) {
+    updateToStatus(item: IStatusMarket) {
       const isElementInArray: boolean = Boolean(this.statusMarket.filter(el => el.timezone === item.timezone).length);
       this.date = new Date();
 
